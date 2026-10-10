@@ -1,24 +1,24 @@
-package com.example.weather_backend.Service;
+package com.example.weather.Controller;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Service
-public class ForecastService {
+import com.example.weather.Service.ForecastService;
 
-    @Value("${weather.api.key}")
-    private String apiKey;
+@RestController
+@RequestMapping("/forecast")
+@CrossOrigin(origins = "*")
+public class ForecastController {
 
-    public String getForecast(String city) {
+    @Autowired
+    ForecastService fs;
 
-        String url = "https://api.openweathermap.org/data/2.5/forecast"
-                + "?q=" + city
-                + "&appid=" + apiKey
-                + "&units=metric";
-
-        RestTemplate rt = new RestTemplate();
-
-        return rt.getForObject(url, String.class);
+    @GetMapping("/{city}")
+    public String getForecast(@PathVariable String city) {
+        return fs.getForecast(city);
     }
 }

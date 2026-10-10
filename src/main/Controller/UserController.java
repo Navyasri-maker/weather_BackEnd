@@ -1,4 +1,4 @@
-package com.example.weather_backend.Controller;
+package com.example.weather.Controller;
 
 import java.util.List;
 
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.weather_backend.Entity.User;
-import com.example.weather_backend.Repository.UserRepository;
+import com.example.weather.Entity.User;
+import com.example.weather.Repository.UserRepository;
 
 @RestController
 @RequestMapping("/user")
@@ -22,6 +22,7 @@ public class UserController {
     UserRepository ur;
 
     @PostMapping("/add")
+    @RequestMapping("/user")
     public User addUser(@RequestBody User user) {
         return ur.save(user);
     }
