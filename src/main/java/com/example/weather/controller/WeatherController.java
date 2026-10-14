@@ -16,7 +16,7 @@ import com.example.weather.service.WeatherService;
 
 @RestController
 @RequestMapping("/weather")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "${WEATHER_CORS_ORIGIN:*}")
 public class WeatherController {
 
     private final WeatherService weatherService;
